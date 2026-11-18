@@ -1,0 +1,13 @@
+{
+  "name": "CYD PS4 Memory Combo",
+  "version": "1.0.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "firmware/cyd-memory-game-v1.0.0-merged.bin", "offset": 0 }
+      ]
+    }
+  ]
+}

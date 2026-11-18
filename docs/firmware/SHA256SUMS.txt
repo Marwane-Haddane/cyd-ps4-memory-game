@@ -1,0 +1,4 @@
+7cb3de4bc9b02ba5d7db7cb756c4da37a701ac162f18e47fb2cbd1e9e495902d *bootloader.bin
+00cd4fea5974c7ff2f7534e52f36f92757c788719aabb327fd6d5e4b2fecf974 *cyd-memory-game-v1.0.0-merged.bin
+11d6ada27a99b4dfdd21625b338f15d34a193a9087fc6d3a7086ee09d4d84115 *firmware.bin
+7f00b6c042a89b15b0cac534f82ed988caf29278ff5700b0c511eb1b5bb7c820 *partitions.bin

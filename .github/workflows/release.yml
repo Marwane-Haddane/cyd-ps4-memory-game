@@ -1,0 +1,53 @@
+name: Firmware release
+
+# Push a tag such as v1.0.0 to publish the firmware in docs/firmware/ as a GitHub release.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Verify checksums
+        working-directory: docs/firmware
+        run: sha256sum -c SHA256SUMS.txt
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: CYD Memory Combo ${{ github.ref_name }}
+          body: |
+            ## Install
+
+            **Easiest:** open the [web installer](https://marwane-haddane.github.io/cyd-ps4-memory-game/) in Chrome or Edge, plug in the CYD and click **Install**.
+
+            **Command line:** flash the merged image at `0x0`:
+
+            ```
+            esptool --chip esp32 --baud 460800 write-flash 0x0 cyd-memory-game-${{ github.ref_name }}-merged.bin
+            ```
+
+            Or flash the separate parts: `bootloader.bin` at `0x1000`, `partitions.bin` at `0x8000`, `firmware.bin` at `0x10000`.
+
+            ## Files
+
+            | File | Flash at | Use |
+            | --- | --- | --- |
+            | `cyd-memory-game-${{ github.ref_name }}-merged.bin` | `0x0` | Everything in one image (recommended) |
+            | `bootloader.bin` | `0x1000` | Second-stage bootloader |
+            | `partitions.bin` | `0x8000` | Partition table |
+            | `firmware.bin` | `0x10000` | Game application |
+            | `SHA256SUMS.txt` | — | Checksums |
+
+            Target: original ESP32 CYD (ESP32-2432S028 family), 4 MB flash, DIO, 40 MHz. Pair a PS4 DualShock 4 by holding SHARE + PS.
+          files: |
+            docs/firmware/*.bin
+            docs/firmware/SHA256SUMS.txt

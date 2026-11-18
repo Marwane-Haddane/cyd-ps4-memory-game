@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Install CYD PS4 Memory Combo</title>
+  <meta name="description" content="Flash the CYD PS4 Memory Combo game to an ESP32 Cheap Yellow Display straight from your browser.">
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <style>
+    :root { --bg:#0b0f1a; --card:#121a2b; --line:#24324d; --text:#e8eefc; --muted:#93a3c2; --yellow:#f5c518; --tri:#2bd9a0; --cir:#ff5a6e; --x:#5aa9ff; --sq:#ff7ad9; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:"Segoe UI", system-ui, -apple-system, sans-serif; color:var(--text); background:
+      radial-gradient(800px 400px at 85% -10%, rgba(245,197,24,.14), transparent 70%),
+      radial-gradient(700px 400px at -10% 110%, rgba(90,169,255,.12), transparent 70%), var(--bg); min-height:100vh; }
+    main { max-width:880px; margin:0 auto; padding:56px 24px 64px; }
+    .symbols { font-size:28px; letter-spacing:14px; font-weight:700; }
+    .symbols .t{color:var(--tri)} .symbols .c{color:var(--cir)} .symbols .x{color:var(--x)} .symbols .s{color:var(--sq)}
+    h1 { font-size:clamp(36px,6vw,60px); line-height:1.02; margin:14px 0 10px; letter-spacing:-.02em; }
+    h1 span { color:var(--yellow); }
+    .lead { color:var(--muted); font-size:18px; line-height:1.6; max-width:640px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:28px; margin-top:28px; }
+    .install { display:flex; flex-wrap:wrap; align-items:center; gap:22px; }
+    .install p { margin:0; color:var(--muted); line-height:1.5; flex:1 1 260px; }
+    esp-web-install-button button, .btn { font:600 17px "Segoe UI", system-ui, sans-serif; background:var(--yellow); color:#141414; border:0; border-radius:12px; padding:14px 26px; cursor:pointer; }
+    .unsupported, .not-allowed { color:#ffb4b4; }
+    h2 { font-size:20px; margin:0 0 14px; }
+    ol, ul { margin:0; padding-left:22px; line-height:1.75; color:#cdd7ec; }
+    code { background:#0b1222; border:1px solid var(--line); border-radius:6px; padding:1px 6px; font-size:.92em; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+    table { width:100%; border-collapse:collapse; font-size:15px; }
+    th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); }
+    th { color:var(--muted); font-weight:600; }
+    a { color:var(--yellow); }
+    footer { margin-top:36px; color:var(--muted); font-size:14px; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="symbols"><span class="t">△</span><span class="c">○</span><span class="x">✕</span><span class="s">□</span></div>
+  <h1>CYD <span>Memory Combo</span></h1>
+  <p class="lead">A memory game for the ESP32 Cheap Yellow Display, played with a PS4 DualShock&nbsp;4 over Bluetooth. Flash it from this page — no Arduino IDE, no PlatformIO.</p>
+
+  <section class="card install">
+    <esp-web-install-button manifest="manifest.json">
+      <button slot="activate">Install on my CYD</button>
+      <span slot="unsupported" class="unsupported">Your browser can't flash devices. Open this page in <b>Chrome</b> or <b>Edge</b> on a computer.</span>
+      <span slot="not-allowed" class="not-allowed">Open this page over HTTPS to install.</span>
+    </esp-web-install-button>
+    <p>Plug the CYD into your computer with a <b>USB data cable</b>, click the button, choose its serial port and confirm. Version <b>1.0.0</b> · ESP32 · 4&nbsp;MB flash.</p>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Before you start</h2>
+      <ul>
+        <li>Chrome or Edge on Windows, macOS, Linux or ChromeOS</li>
+        <li>An original-ESP32 CYD (<code>ESP32-2432S028</code> family)</li>
+        <li>A USB cable that carries data, not just power</li>
+        <li>The CH340 or CP210x USB driver if no port appears</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>After flashing</h2>
+      <ol>
+        <li>Press <b>RESET</b> on the CYD.</li>
+        <li>On the PS4 controller (USB unplugged), hold <b>SHARE</b>, then also hold <b>PS</b> until the light bar flashes.</li>
+        <li>Release everything, pick <b>Easy</b> or <b>Hard</b> with the D-pad, press <b>✕</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>How to play</h2>
+    <p class="lead" style="font-size:16px;margin:0 0 14px">Watch the sequence, then repeat it button by button. Each round adds one more. Finish 12 to win.</p>
+    <table>
+      <tr><th>Mode</th><th>Buttons</th><th>First round</th><th>Flash / gap</th><th>Time per press</th></tr>
+      <tr><td>Easy</td><td>✕ ○ □ △</td><td>2</td><td>750 / 250 ms</td><td>No limit</td></tr>
+      <tr><td>Hard</td><td>✕ ○ □ △ + L1 R1 L2 R2</td><td>4</td><td>350 / 180 ms</td><td>5 seconds</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Prefer the command line?</h2>
+    <p class="lead" style="font-size:16px;margin:0 0 12px">Download the files from the <a href="https://github.com/Marwane-Haddane/cyd-ps4-memory-game/releases/latest">latest release</a>, then:</p>
+    <code style="display:block;padding:12px;white-space:pre-wrap">esptool --chip esp32 --baud 460800 write-flash 0x0 cyd-memory-game-v1.0.0-merged.bin</code>
+  </section>
+
+  <footer>
+    Source and releases: <a href="https://github.com/Marwane-Haddane/cyd-ps4-memory-game">github.com/Marwane-Haddane/cyd-ps4-memory-game</a> ·
+    Installer powered by <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a> ·
+    Built by Marwane Haddane
+  </footer>
+</main>
+</body>
+</html>
